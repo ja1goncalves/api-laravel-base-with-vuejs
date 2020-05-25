@@ -28,26 +28,40 @@ export default [
   //   i18n: "Email",
   // },
   {
-    url: null,
+    url: "/dashboard/analytics",
     name: 'Dashboard',
-    tag: '2',
+    // tag: '2',
     tagColor: 'warning',
     icon: 'HomeIcon',
     i18n: 'Dashboard',
-    submenu: [
-      {
-        url: '/dashboard/analytics',
-        name: 'Analytics',
-        slug: 'dashboard-analytics',
-        i18n: 'Analytics'
-      },
-      {
-        url: '/dashboard/ecommerce',
-        name: 'eCommerce',
-        slug: 'dashboard-ecommerce',
-        i18n: 'eCommerce'
-      }
-    ]
+    // submenu: [
+    //   {
+    //     url: '/dashboard/analytics',
+    //     name: 'Analytics',
+    //     slug: 'dashboard-analytics',
+    //     i18n: 'Analytics'
+    //   },
+    //   {
+    //     url: '/dashboard/ecommerce',
+    //     name: 'eCommerce',
+    //     slug: 'dashboard-ecommerce',
+    //     i18n: 'eCommerce'
+    //   }
+    // ]
+  },
+  {
+    header: 'Usuários',
+    icon: 'PackageIcon',
+    i18n: 'Usuários',
+    items: [
+        {
+            url: '/users',
+            name: 'Listar Usuários',
+            slug: 'users-list',
+            icon: 'UsersIcon',
+            i18n: 'Listar Usuários'
+        }
+     ],
   },
   {
     header: 'Apps',
