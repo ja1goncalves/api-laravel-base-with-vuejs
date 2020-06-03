@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::middleware('auth:api')->delete('/user/logout', function (Request $request) {
+    return $request->user()->token()->revoke();
+});
 
 Route::group(['prefix' => 'users', 'middleware' => ['auth:api']], function () {
     Route::resource('/', 'UsersController', ['only' => ['store', 'index']]);

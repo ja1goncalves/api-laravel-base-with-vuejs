@@ -83,20 +83,31 @@ export default {
     logout () {
 
       // if user is logged in via auth0
-      if (this.$auth.profile) this.$auth.logOut()
+      // if (this.$auth.profile) this.$auth.logOut()
 
       // if user is logged in via firebase
-      const firebaseCurrentUser = firebase.auth().currentUser
+      // const firebaseCurrentUser = firebase.auth().currentUser
 
-      if (firebaseCurrentUser) {
-        firebase.auth().signOut().then(() => {
-          this.$router.push('/pages/login').catch(() => {})
-        })
-      }
-      // If JWT login
-      if (localStorage.getItem('accessToken')) {
-        localStorage.removeItem('accessToken')
-        this.$router.push('/pages/login').catch(() => {})
+      // if (firebaseCurrentUser) {
+      //   firebase.auth().signOut().then(() => {
+      //     this.$router.push('/pages/login').catch(() => {})
+      //   })
+      // }
+
+      // If Passport login
+      if (localStorage.getItem('refreshToken')) {
+        this.$store.dispatch('auth/logOutPassport')
+          .then(() => { this.$vs.loading.close() })
+          .catch(error => {
+              this.$vs.loading.close()
+              this.$vs.notify({
+                  title: 'Error',
+                  text: error.message,
+                  iconPack: 'feather',
+                  icon: 'icon-alert-circle',
+                  color: 'danger'
+              })
+          })
       }
 
       // Change role on logout. Same value as initialRole of acj.js

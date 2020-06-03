@@ -30,7 +30,7 @@
         <router-link to="/pages/forgot-password">Forgot Password?</router-link>
     </div>
     <div class="flex flex-wrap justify-between mb-3">
-      <vs-button  type="border" @click="registerUser">Register</vs-button>
+      <vs-button  type="border" @click="registerUser" disabled>Register</vs-button>
       <vs-button :disabled="!validateForm" @click="loginJWT">Login</vs-button>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
   data () {
     return {
       email: 'admin@admin.com',
-      password: 'adminadmin',
+      password: '12345678',
       checkbox_remember_me: false
     }
   },
@@ -85,7 +85,7 @@ export default {
         }
       }
 
-      this.$store.dispatch('auth/loginJWT', payload)
+      this.$store.dispatch('auth/loginPassport', payload)
         .then(() => { this.$vs.loading.close() })
         .catch(error => {
           this.$vs.loading.close()

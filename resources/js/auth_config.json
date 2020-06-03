@@ -1,4 +1,5 @@
 {
-  "domain": "pixinvent.auth0.com",
-  "clientId": "n2PePiWOxWiIbdqn8TbjkAJHF40ipugC"
+    "domain": "pixinvent.auth0.com",
+    "clientId": "2",
+    "clientSecret": "2ykC0qjJRfYrhiTuLwq5HRL00J7mcjqTVSFIXkF2"
 }

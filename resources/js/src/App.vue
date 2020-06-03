@@ -16,7 +16,7 @@
 
 <script>
 import themeConfig from '@/../themeConfig.js'
-import jwt         from '@/http/requests/auth/jwt/index.js'
+import passport         from '@/http/requests/auth/passport/index.js'
 
 export default {
   data () {
@@ -68,8 +68,8 @@ export default {
   },
   async created () {
 
-    // jwt
-    jwt.init()
+    // passport
+    passport.init()
 
     const dir = this.$vs.rtl ? 'rtl' : 'ltr'
     document.documentElement.setAttribute('dir', dir)

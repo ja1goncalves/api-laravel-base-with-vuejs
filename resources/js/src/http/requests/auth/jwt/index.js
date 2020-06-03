@@ -26,7 +26,7 @@ export default {
       if (response && response.status === 401) {
         if (!isAlreadyFetchingAccessToken) {
           isAlreadyFetchingAccessToken = true
-          store.dispatch('auth/fetchAccessToken')
+          store.dispatch('auth/fetchAccessTokenJWT')
             .then((access_token) => {
               isAlreadyFetchingAccessToken = false
               onAccessTokenFetched(access_token)

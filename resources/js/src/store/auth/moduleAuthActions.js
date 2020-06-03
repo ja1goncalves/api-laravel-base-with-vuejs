@@ -8,6 +8,7 @@
 ==========================================================================================*/
 
 import jwt from '../../http/requests/auth/jwt/index.js'
+import passport from '../../http/requests/auth/passport/index.js'
 
 
 import firebase from 'firebase/app'
@@ -354,9 +355,64 @@ export default {
         .catch(error => { reject(error) })
     })
   },
-  fetchAccessToken () {
+  fetchAccessTokenJWT () {
     return new Promise((resolve) => {
       jwt.refreshToken().then(response => { resolve(response) })
+    })
+  },
+
+  //Passport
+  loginPassport ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      passport.login(payload.userDetails.email, payload.userDetails.password)
+        .then(response => {
+          if (response.data) {
+            // Navigate User to homepage
+            router.push(router.currentRoute.query.to || '/')
+
+            // Set accessToken
+            localStorage.setItem('refreshToken', response.data.refresh_token)
+
+            // Set bearer token in axios
+            commit('SET_BEARER', response.data.access_token)
+
+            resolve(response)
+          } else {
+            reject({message: 'Wrong Email or Password'})
+          }
+
+        })
+        .catch(error => { reject(error) })
+    })
+  },
+  logOutPassport ({ commit }) {
+      return new Promise((resolve, reject) => {
+          passport.logout()
+              .then(response => {
+                  if (response.status === 200 || response.data === 1) {
+                      // Remove refreshToken
+                      console.log(localStorage.removeItem('refreshToken'))
+
+                      // Set bearer token in axios
+                      commit('SET_BEARER', '')
+
+                      // Navigate User to homepage
+                      router.push('/pages/login')
+                      resolve(response)
+                  } else {
+                      reject({message: 'Wrong Email or Password'})
+                  }
+
+              })
+              .catch(error => { reject(error) })
+      })
+  },
+  fetchAccessTokenPassport ({ commit }) {
+    return new Promise((resolve) => {
+      passport.refreshToken().then(response => { resolve(response) })
+        .then(response => {
+          commit('SET_BEARER', response.access_token)
+        })
     })
   }
 }
