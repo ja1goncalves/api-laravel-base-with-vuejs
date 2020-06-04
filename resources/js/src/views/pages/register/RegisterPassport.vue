@@ -55,7 +55,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
       class="w-full mt-6" />
     <span class="text-danger text-sm">{{ errors.first('password_confirmation') }}</span>
 
-    <vs-checkbox v-model="active" class="mt-6">Ativo</vs-checkbox>
+    <vs-checkbox v-model="status" class="mt-6">Ativo</vs-checkbox>
     <vs-button class="float-right" @click="registerUser" :disabled="!validateForm">Adicionar</vs-button>
   </div>
 </template>
@@ -70,7 +70,7 @@ export default {
       email: '',
       password: '',
       password_confirmation: '',
-      active: true
+      status: true
     }
   },
   computed: {
@@ -108,7 +108,7 @@ export default {
           email: this.email,
           password: this.password,
           password_confirmation: this.password_confirmation,
-          active: this.active
+          status: this.status
         },
         notify: this.$vs.notify
       }

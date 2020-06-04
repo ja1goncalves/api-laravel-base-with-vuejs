@@ -1,7 +1,7 @@
 <template>
     <div :style="{'direction': $vs.rtl ? 'rtl' : 'ltr'}">
-      <feather-icon icon="Edit3Icon" svgClasses="h-5 w-5 mr-4 hover:text-primary cursor-pointer" @click="editRecord" />
-      <feather-icon icon="Trash2Icon" svgClasses="h-5 w-5 hover:text-danger cursor-pointer" @click="confirmDeleteRecord" />
+      <feather-icon icon="Edit3Icon" svgClasses="h-5 w-5 mr-4 hover:text-primary cursor-pointer" @click="editRecord()" />
+      <feather-icon icon="Trash2Icon" svgClasses="h-5 w-5 hover:text-danger cursor-pointer" @click="confirmDeleteRecord()" />
     </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   name: 'CellRendererActions',
   methods: {
     editRecord () {
-      this.$router.push(`/apps/user/user-edit/${  268}`).catch(() => {})
+      this.$router.push(`/apps/user/user-edit/${this.params.data.id}`).catch(() => {})
 
       /*
               Below line will be for actual product
@@ -23,8 +23,8 @@ export default {
       this.$vs.dialog({
         type: 'confirm',
         color: 'danger',
-        title: 'Confirm Delete',
-        text: `You are about to delete "${this.params.data.username}"`,
+        title: 'Confirmar Remoção',
+        text: `Você tem certeza que quer deletar o usuário "${this.params.data.name}?"`,
         accept: this.deleteRecord,
         acceptText: 'Delete'
       })

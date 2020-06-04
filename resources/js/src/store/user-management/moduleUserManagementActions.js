@@ -22,9 +22,9 @@ export default {
   // },
   fetchUsers ({ commit }) {
     return new Promise((resolve, reject) => {
-      axios.get('/api/user-management/users')
+      axios.get('/api/users')
         .then((response) => {
-          commit('SET_USERS', response.data)
+          commit('SET_USERS', response.data.data)
           resolve(response)
         })
         .catch((error) => { reject(error) })

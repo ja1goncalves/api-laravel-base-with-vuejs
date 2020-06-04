@@ -23,11 +23,13 @@ class UserTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-
+            'name'       => $model->name,
+            'email'      => $model->email,
+            'status'     => $model->status,
             /* place your other model properties here */
 
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'created_at' => $model->created_at->format('d/m/Y'),
+            'updated_at' => $model->updated_at->toDateTimeString()
         ];
     }
 }

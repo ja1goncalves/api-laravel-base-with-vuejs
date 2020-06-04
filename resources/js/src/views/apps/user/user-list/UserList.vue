@@ -11,7 +11,7 @@
 
   <div id="page-user-list">
 
-    <vx-card ref="filterCard" title="Filters" class="user-list-filters mb-8" actionButtons @refresh="resetColFilters" @remove="resetColFilters">
+    <vx-card ref="filterCard" title="Filtros" class="user-list-filters mb-8" actionButtons @refresh="resetColFilters" @remove="resetColFilters">
       <div class="vx-row">
         <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
           <label class="text-sm opacity-75">Role</label>
@@ -69,10 +69,10 @@
           <!-- ACTION - DROPDOWN -->
           <vs-dropdown vs-trigger-click class="cursor-pointer">
 
-            <div class="sm:mr-4 mr-0 p-3 shadow-drop rounded-lg d-theme-dark-light-bg cursor-pointer flex items-end justify-center text-lg font-medium w-32">
-              <span class="mr-2 leading-none">Ações</span>
-              <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
-            </div>
+<!--            <div class="sm:mr-4 mr-0 p-3 shadow-drop rounded-lg d-theme-dark-light-bg cursor-pointer flex items-end justify-center text-lg font-medium w-32">-->
+<!--              <span class="mr-2 leading-none">Ações</span>-->
+<!--              <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />-->
+<!--            </div>-->
 
             <vs-dropdown-menu>
 
@@ -229,35 +229,16 @@ export default {
           headerCheckboxSelection: true
         },
         {
-          headerName: 'Username',
-          field: 'username',
-          filter: true,
-          width: 210,
-          cellRendererFramework: 'CellRendererLink'
-        },
-        {
-          headerName: 'Email',
+          headerName: 'E-mail',
           field: 'email',
           filter: true,
           width: 225
         },
         {
-          headerName: 'Name',
+          headerName: 'Nome',
           field: 'name',
           filter: true,
           width: 200
-        },
-        {
-          headerName: 'Country',
-          field: 'country',
-          filter: true,
-          width: 150
-        },
-        {
-          headerName: 'Role',
-          field: 'role',
-          filter: true,
-          width: 150
         },
         {
           headerName: 'Status',
@@ -267,18 +248,10 @@ export default {
           cellRendererFramework: 'CellRendererStatus'
         },
         {
-          headerName: 'Verified',
-          field: 'is_verified',
+          headerName: 'Criado',
+          field: 'created_at',
           filter: true,
-          width: 125,
-          cellRendererFramework: 'CellRendererVerified',
-          cellClass: 'text-center'
-        },
-        {
-          headerName: 'Department',
-          field: 'department',
-          filter: true,
-          width: 150
+          width: 150,
         },
         {
           headerName: 'Actions',
