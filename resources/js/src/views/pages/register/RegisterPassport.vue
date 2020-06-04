@@ -35,7 +35,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
       ref="password"
       type="password"
       data-vv-validate-on="blur"
-      v-validate="'required|min:6'"
+      v-validate="'required|min:8'"
       name="password"
       label="Senha"
       icon-pack="feather" icon="icon-lock"
@@ -45,7 +45,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
 
     <vs-input
       type="password"
-      v-validate="'min:6|confirmed:password'"
+      v-validate="'min:8|confirmed:password'"
       data-vv-validate-on="blur"
       data-vv-as="password"
       name="password_confirmation"

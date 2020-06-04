@@ -29,12 +29,12 @@
             <span class="ml-2">Inbox</span>
           </li>
 
-<!--          <li-->
-<!--            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"-->
-<!--            @click="$router.push('/apps/todo').catch(() => {})">-->
-<!--            <feather-icon icon="CheckSquareIcon" svgClasses="w-4 h-4" />-->
-<!--            <span class="ml-2">Tasks</span>-->
-<!--          </li>-->
+          <li
+            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+            @click="$router.push('/pages/user-settings').catch(() => {})">
+            <feather-icon icon="SettingsIcon" svgClasses="w-4 h-4" />
+            <span class="ml-2">Configurações</span>
+          </li>
 
 <!--          <li-->
 <!--            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"-->

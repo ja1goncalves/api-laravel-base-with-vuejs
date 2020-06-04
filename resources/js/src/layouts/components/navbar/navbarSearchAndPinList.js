@@ -8,17 +8,15 @@ export default {
       {title: "eCommerce Dashboard",        url: "/dashboard/ecommerce",                icon: "HomeIcon",           is_bookmarked: false},
 
       // APPS
-      {title: "Todo",                       url: "/apps/todo",                          icon: "CheckSquareIcon",    is_bookmarked: true},
-      {title: "Chat",                       url: "/apps/chat",                          icon: "MessageSquareIcon",  is_bookmarked: true},
-      {title: "Email",                      url: "/apps/email",                         icon: "MailIcon",           is_bookmarked: true},
-      {title: "Calendar",                   url: "/apps/calendar/vue-simple-calendar",  icon: "CalendarIcon",       is_bookmarked: true},
-      {title: "E-Commerce Shop",            url: "/apps/eCommerce/shop",                icon: "ShoppingCartIcon",   is_bookmarked: true},
+      {title: "Todo",                       url: "/apps/todo",                          icon: "CheckSquareIcon",    is_bookmarked: false},
+      {title: "Chat",                       url: "/apps/chat",                          icon: "MessageSquareIcon",  is_bookmarked: false},
+      {title: "E-mail",                     url: "/apps/email",                         icon: "MailIcon",           is_bookmarked: true},
+      {title: "Calendario",                 url: "/apps/calendar/vue-simple-calendar",  icon: "CalendarIcon",       is_bookmarked: true},
+      {title: "E-Commerce Shop",            url: "/apps/eCommerce/shop",                icon: "ShoppingCartIcon",   is_bookmarked: false},
       {title: "E-Commerce Item Detail",     url: "/apps/eCommerce/item",                icon: "SmartphoneIcon",     is_bookmarked: false},
       {title: "E-Commerce Wish List",       url: "/apps/eCommerce/wish-list",           icon: "HeartIcon",          is_bookmarked: false},
       {title: "E-Commerce Checkout",        url: "/apps/eCommerce/checkout",            icon: "CreditCardIcon",     is_bookmarked: false},
       {title: "User List",                  url: "/apps/user/user-list",                icon: "ListIcon",           is_bookmarked: false},
-      {title: "User View",                  url: "/apps/user/user-view/268",            icon: "UserIcon",           is_bookmarked: false},
-      {title: "User Edit",                  url: "/apps/user/user-edit/268",            icon: "EditIcon",           is_bookmarked: false},
 
       // UI ELEMENTS
       {title: "Data List - List View",     url: "/ui-elements/data-list/list-view",    icon: "ListIcon",           is_bookmarked: false},
@@ -71,7 +69,7 @@ export default {
 
       // PAGES
       {title: "Login Page",                url: "/pages/login",                        icon: "LockIcon",           is_bookmarked: false},
-      {title: "Register Page",             url: "/pages/register",                     icon: "UserPlusIcon",       is_bookmarked: false},
+      {title: "Registro de novo usuário",  url: "/pages/register",                     icon: "UserPlusIcon",       is_bookmarked: true},
       {title: "Forgot Password Page",      url: "/pages/forgot-password",              icon: "HelpCircleIcon",     is_bookmarked: false},
       {title: "Reset Password Page",       url: "/pages/reset-password",               icon: "UnlockIcon",         is_bookmarked: false},
       {title: "Lock Screen Page",          url: "/pages/lock-screen",                  icon: "LockIcon",           is_bookmarked: false},
@@ -81,7 +79,7 @@ export default {
       {title: "Not Authorized Page",       url: "/pages/not-authorized",               icon: "XCircleIcon",        is_bookmarked: false},
       {title: "Maintenance Page",          url: "/pages/maintenance",                  icon: "MonitorIcon",        is_bookmarked: false},
       {title: "Profile Page",              url: "/pages/profile",                      icon: "UserIcon",           is_bookmarked: false},
-      {title: "User Settings",             url: "/pages/user-settings",                icon: "SettingsIcon",       is_bookmarked: false},
+      {title: "Configurações",             url: "/pages/user-settings",                icon: "SettingsIcon",       is_bookmarked: true},
       {title: "FAQ Page",                  url: "/pages/faq",                          icon: "HelpCircleIcon",     is_bookmarked: false},
       {title: "KnowledgeBase Page",        url: "/pages/knowledge-base",               icon: "BookIcon",           is_bookmarked: false},
       {title: "Search Page",               url: "/pages/search",                       icon: "SearchIcon",         is_bookmarked: false},
