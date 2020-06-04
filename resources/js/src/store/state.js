@@ -16,12 +16,14 @@ import themeConfig, { colors } from '@/../themeConfig.js'
 
 // *From Auth - Data will be received from auth provider
 const userDefaults = {
-  uid         : 0,          // From Auth
-  displayName : 'John Doe', // From Auth
-  about       : 'Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw brownie brownie marshmallow.',
+  id          : 0,          // From Auth
+  name        : 'Safari', // From Auth
+  email       : 'sistema@safari.com.br',
+  active      : 1,
+  about       : 'Software House',
   photoURL    : require('@assets/images/portrait/small/avatar-s-11.jpg'), // From Auth
-  status      : 'online',
-  userRole    : 'admin'
+  status      : 'offline',
+  userRole    : 'editor'
 }
 
 const userInfoLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {}

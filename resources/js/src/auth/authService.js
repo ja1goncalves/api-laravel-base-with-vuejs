@@ -1,6 +1,7 @@
 import auth0 from 'auth0-js'
 import EventEmitter from 'events'
 import authConfig from '@/../auth_config.json'
+import cookies from "../http/cookies";
 
 import store from '@/store/store.js'
 
@@ -55,7 +56,7 @@ class AuthService extends EventEmitter {
       localStorage.setItem(localStorageKey, 'true')
 
       store.commit('UPDATE_USER_INFO', {
-        displayName: this.profile.name,
+        name: this.profile.name,
         email: this.profile.email,
         photoURL: this.profile.picture,
         providerId: this.profile.sub.substr(0, this.profile.sub.indexOf('|')),
@@ -104,7 +105,7 @@ class AuthService extends EventEmitter {
     }
 
     isAuthenticated () {
-      return !!localStorage.getItem('refreshToken')
+      return !!cookies.getTokenByCookies(true)
     }
 }
 

@@ -40,7 +40,7 @@
 export default {
   data () {
     return {
-      email: 'admin@admin.com',
+      email: 'joao@safari.com.br',
       password: '12345678',
       checkbox_remember_me: false
     }

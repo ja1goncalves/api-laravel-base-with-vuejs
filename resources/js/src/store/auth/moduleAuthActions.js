@@ -9,6 +9,7 @@
 
 import jwt from '../../http/requests/auth/jwt/index.js'
 import passport from '../../http/requests/auth/passport/index.js'
+import cookies from "../../http/cookies";
 
 
 import firebase from 'firebase/app'
@@ -370,49 +371,51 @@ export default {
             // Navigate User to homepage
             router.push(router.currentRoute.query.to || '/')
 
-            // Set accessToken
-            localStorage.setItem('refreshToken', response.data.refresh_token)
+            // Set bearer token in cookie axios
+            const token = JSON.stringify({ token: response.data, timeLogin: new Date().getTime() });
+            cookies.createTokenDataInCookies(token)
 
-            // Set bearer token in axios
-            commit('SET_BEARER', response.data.access_token)
+            passport.getUser()
+                .then(response => {
+                    commit('UPDATE_USER_INFO', response.data, {root: true})
+                })
 
             resolve(response)
           } else {
             reject({message: 'Wrong Email or Password'})
           }
-
         })
         .catch(error => { reject(error) })
     })
   },
-  logOutPassport ({ commit }) {
+  logOutPassport () {
       return new Promise((resolve, reject) => {
           passport.logout()
               .then(response => {
                   if (response.status === 200 || response.data === 1) {
                       // Remove refreshToken
-                      console.log(localStorage.removeItem('refreshToken'))
-
-                      // Set bearer token in axios
-                      commit('SET_BEARER', '')
-
-                      // Navigate User to homepage
-                      router.push('/pages/login')
+                      cookies.eraseTokenInCookie()
                       resolve(response)
                   } else {
                       reject({message: 'Wrong Email or Password'})
                   }
-
               })
               .catch(error => { reject(error) })
       })
   },
-  fetchAccessTokenPassport ({ commit }) {
-    return new Promise((resolve) => {
-      passport.refreshToken().then(response => { resolve(response) })
+  fetchAccessTokenPassport () {
+    return new Promise((resolve, reject) => {
+      passport.refreshToken()
         .then(response => {
-          commit('SET_BEARER', response.access_token)
+            const token = JSON.stringify({ token: response.data, timeLogin: new Date().getTime() });
+            cookies.createTokenDataInCookies(token)
+            resolve(response)
         })
+          .catch(error => {
+              cookies.eraseTokenInCookie()
+              router.push('/pages/login')
+              reject(error)
+          })
     })
   }
 }

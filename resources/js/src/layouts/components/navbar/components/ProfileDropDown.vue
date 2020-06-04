@@ -1,8 +1,8 @@
 <template>
-  <div class="the-navbar__user-meta flex items-center" v-if="activeUserInfo.displayName">
+  <div class="the-navbar__user-meta flex items-center" v-if="activeUserInfo.name">
 
     <div class="text-right leading-tight hidden sm:block">
-      <p class="font-semibold">{{ activeUserInfo.displayName }}</p>
+      <p class="font-semibold">{{ activeUserInfo.name }}</p>
       <small>Available</small>
     </div>
 
@@ -29,26 +29,26 @@
             <span class="ml-2">Inbox</span>
           </li>
 
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/todo').catch(() => {})">
-            <feather-icon icon="CheckSquareIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Tasks</span>
-          </li>
+<!--          <li-->
+<!--            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"-->
+<!--            @click="$router.push('/apps/todo').catch(() => {})">-->
+<!--            <feather-icon icon="CheckSquareIcon" svgClasses="w-4 h-4" />-->
+<!--            <span class="ml-2">Tasks</span>-->
+<!--          </li>-->
 
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/chat').catch(() => {})">
-            <feather-icon icon="MessageSquareIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Chat</span>
-          </li>
+<!--          <li-->
+<!--            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"-->
+<!--            @click="$router.push('/apps/chat').catch(() => {})">-->
+<!--            <feather-icon icon="MessageSquareIcon" svgClasses="w-4 h-4" />-->
+<!--            <span class="ml-2">Chat</span>-->
+<!--          </li>-->
 
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/eCommerce/wish-list').catch(() => {})">
-            <feather-icon icon="HeartIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Wish List</span>
-          </li>
+<!--          <li-->
+<!--            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"-->
+<!--            @click="$router.push('/apps/eCommerce/wish-list').catch(() => {})">-->
+<!--            <feather-icon icon="HeartIcon" svgClasses="w-4 h-4" />-->
+<!--            <span class="ml-2">Wish List</span>-->
+<!--          </li>-->
 
           <vs-divider class="m-1" />
 
@@ -67,6 +67,7 @@
 <script>
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import authService from "../../../../auth/authService";
 
 export default {
   data () {
@@ -95,7 +96,7 @@ export default {
       // }
 
       // If Passport login
-      if (localStorage.getItem('refreshToken')) {
+      if (authService.isAuthenticated()) {
         this.$store.dispatch('auth/logOutPassport')
           .then(() => { this.$vs.loading.close() })
           .catch(error => {
