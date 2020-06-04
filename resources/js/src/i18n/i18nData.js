@@ -388,7 +388,7 @@ export default {
     demoText: 'Le gâteau au sésame s\'enclenche au petit pain au pain d\'épices danois J\'adore le pain d\'épices. Tarte aux pommes et jujubes chupa chups muffin halvah sucette. Tiramisu gâteau au chocolat gâteau d\'avoine tiramisu prune sucre. Donut tarte sucrée gâteau à l\'avoine dragée gouttes de fruits gâteau au citron en barbe à papa.'
   },
   pt: {
-    Dashboard: 'painel de controle',
+    Dashboard: 'Painel de Controle',
     eCommerce: 'comércio eletrônico',
     Apps: 'APPS',
     Todo: 'Façam',
@@ -459,7 +459,7 @@ export default {
     Pages: 'PÁGINAS',
     Authentication: 'Autenticação',
     Login: 'Entrar',
-    Register: 'Registo',
+    Register: 'Registro',
     ForgotPassword: 'Esqueceu A Senha',
     ResetPassword: 'Redefinir Senha',
     LockScreen: 'Tela de bloqueio',
@@ -471,7 +471,8 @@ export default {
     NotAuthorized: 'Não autorizado',
     Maintenance: 'Manutenção',
     Profile: 'Perfil',
-    User: 'Do utilizador',
+    User: 'Usuário',
+    Add: 'Adicionar',
     View: 'Visão',
     Edit: 'Editar',
     UserSettings: 'Configurações do Usuário',

@@ -49,14 +49,6 @@ const router = new Router({
           redirect: '/dashboard/analytics'
         },
         {
-          path: '/users',
-          name: 'users-list',
-          component: () => import('./views/users/index.vue'),
-          meta: {
-              rule: 'admin',
-          }
-        },
-        {
           path: '/dashboard/analytics',
           name: 'dashboard-analytics',
           component: () => import('./views/DashboardAnalytics.vue'),
@@ -204,9 +196,23 @@ const router = new Router({
               { title: 'User' },
               { title: 'List', active: true }
             ],
-            pageTitle: 'User List',
+            pageTitle: 'Listagem de Usuários',
             rule: 'editor'
           }
+        },
+        {
+            path: '/pages/register',
+            name: 'page-register',
+            component: () => import('@/views/pages/register/Register.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'User' },
+                    { title: 'Register', active: true }
+                ],
+                pageTitle: 'Registro de Usuário',
+                rule: 'editor'
+            }
         },
         {
           path: '/apps/user/user-view/:userId',
@@ -1286,14 +1292,6 @@ const router = new Router({
           path: '/pages/login',
           name: 'page-login',
           component: () => import('@/views/pages/login/Login.vue'),
-          meta: {
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/pages/register',
-          name: 'page-register',
-          component: () => import('@/views/pages/register/Register.vue'),
           meta: {
             rule: 'editor'
           }

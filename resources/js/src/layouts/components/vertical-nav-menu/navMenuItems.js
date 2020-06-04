@@ -50,17 +50,17 @@ export default [
     // ]
   },
   {
-    header: 'Usuários',
+    header: 'Modules',
     icon: 'PackageIcon',
-    i18n: 'Usuários',
+    i18n: 'Módulos',
     items: [
         {
-            url: '/users',
-            name: 'Listar Usuários',
-            slug: 'users-list',
+            url: '/apps/user/user-list',
+            name: 'Users',
+            slug: 'app-user-list',
             icon: 'UsersIcon',
-            i18n: 'Listar Usuários'
-        }
+            i18n: 'Usuários'
+        },
      ],
   },
   {
@@ -135,12 +135,6 @@ export default [
         icon: 'UserIcon',
         i18n: 'User',
         submenu: [
-          {
-            url: '/apps/user/user-list',
-            name: 'List',
-            slug: 'app-user-list',
-            i18n: 'List'
-          },
           {
             url: '/apps/user/user-view/268',
             name: 'View',

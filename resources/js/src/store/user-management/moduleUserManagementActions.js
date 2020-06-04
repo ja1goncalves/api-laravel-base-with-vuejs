@@ -48,5 +48,16 @@ export default {
         })
         .catch((error) => { reject(error) })
     })
+  },
+  create (context, payload) {
+    console.log(payload)
+    return new Promise((resolve, reject) => {
+      axios.post("/api/users/", payload.userDetails)
+        .then((response) => {
+          console.log(response.data)
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
   }
 }

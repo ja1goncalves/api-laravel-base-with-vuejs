@@ -67,7 +67,6 @@
 <script>
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import authService from "../../../../auth/authService";
 
 export default {
   data () {
@@ -96,7 +95,7 @@ export default {
       // }
 
       // If Passport login
-      if (authService.isAuthenticated()) {
+      if (this.$store.state.auth.isUserLoggedIn()) {
         this.$store.dispatch('auth/logOutPassport')
           .then(() => { this.$vs.loading.close() })
           .catch(error => {
