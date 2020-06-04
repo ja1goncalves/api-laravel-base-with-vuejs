@@ -11,7 +11,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
 <template>
   <div class="clearfix">
     <vs-input
-      v-validate="'required|min:5'"
+      v-validate="'required|min:5|alpha_spaces'"
       data-vv-validate-on="blur"
       label="Nome"
       name="name"

@@ -33,4 +33,12 @@ class UsersService extends AppService
             ->setPresenter(UserPresenter::class)
             ->paginate($limit);
     }
+
+    public function find($id, $skipPresenter = false)
+    {
+        return $this->repository
+            ->setPresenter(UserPresenter::class)
+            ->skipPresenter($skipPresenter)
+            ->find($id);
+    }
 }

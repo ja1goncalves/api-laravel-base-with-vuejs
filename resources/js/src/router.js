@@ -224,7 +224,7 @@ const router = new Router({
               { title: 'User' },
               { title: 'View', active: true }
             ],
-            pageTitle: 'User View',
+            pageTitle: 'Visão do Usuário',
             rule: 'editor'
           }
         },
@@ -238,7 +238,7 @@ const router = new Router({
               { title: 'User' },
               { title: 'Edit', active: true }
             ],
-            pageTitle: 'User Edit',
+            pageTitle: 'Edição de Usuário',
             rule: 'editor'
           }
         },

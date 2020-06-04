@@ -1,6 +1,6 @@
 <template>
     <vs-chip class="ag-grid-cell-chip" :color="chipColor(params.value)">
-      <span>{{ getValues(params.value) }}</span>
+      <span>{{ params.value }}</span>
     </vs-chip>
 </template>
 
@@ -10,20 +10,12 @@ export default {
   computed: {
     chipColor () {
       return (value) => {
-        if (value === 0) return 'danger'
-        else if (value === 1) return 'success'
-        else if (value === 2) return 'warning'
+        if (value === 'Inativo') return 'danger'
+        else if (value === 'Ativo') return 'success'
+        else if (value === 'Bloqueado') return 'warning'
         else return 'primary'
       }
-    },
-      getValues() {
-          return (value) => {
-              if (value === 0) return 'Inativo'
-              else if (value === 1) return 'Ativo'
-              else if (value === 2) return 'Bloqueado'
-              else return 'Suspenso'
-          }
-      }
+    }
   }
 }
 </script>

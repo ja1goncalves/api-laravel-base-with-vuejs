@@ -32,7 +32,7 @@ export default {
   },
   fetchUser (context, userId) {
     return new Promise((resolve, reject) => {
-      axios.get(`/api/user-management/users/${userId}`)
+      axios.get(`/api/users/${userId}`)
         .then((response) => {
           resolve(response)
         })
@@ -50,11 +50,27 @@ export default {
     })
   },
   create (context, payload) {
-    console.log(payload)
     return new Promise((resolve, reject) => {
       axios.post("/api/users/", payload.userDetails)
         .then((response) => {
-          console.log(response.data)
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
+  },
+  update (context, payload, userId) {
+    return new Promise((resolve, reject) => {
+      axios.put(`/api/users/${payload.userDetails.id}`, payload.userDetails)
+        .then((response) => {
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
+  },
+  delete (context, userId) {
+    return new Promise((resolve, reject) => {
+      axios.delete(`/api/users/${userId}`)
+        .then((response) => {
           resolve(response)
         })
         .catch((error) => { reject(error) })

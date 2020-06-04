@@ -1,6 +1,7 @@
 <template>
     <div :style="{'direction': $vs.rtl ? 'rtl' : 'ltr'}">
-      <feather-icon icon="Edit3Icon" svgClasses="h-5 w-5 mr-4 hover:text-primary cursor-pointer" @click="editRecord()" />
+      <feather-icon icon="Edit3Icon" svgClasses="h-5 w-5 mr-2 hover:text-primary cursor-pointer" @click="editRecord()" />
+        <feather-icon icon="EyeIcon" svgClasses="h-5 w-5 mr-2 hover:text-danger cursor-pointer" @click="viewRecord()" />
       <feather-icon icon="Trash2Icon" svgClasses="h-5 w-5 hover:text-danger cursor-pointer" @click="confirmDeleteRecord()" />
     </div>
 </template>
@@ -9,6 +10,9 @@
 export default {
   name: 'CellRendererActions',
   methods: {
+    viewRecord () {
+        this.$router.push(`/apps/user/user-view/${this.params.data.id}`).catch(() => {})
+    },
     editRecord () {
       this.$router.push(`/apps/user/user-edit/${this.params.data.id}`).catch(() => {})
 
@@ -31,7 +35,16 @@ export default {
     },
     deleteRecord () {
       /* Below two lines are just for demo purpose */
-      this.showDeleteSuccess()
+      this.$router.push({name:'app-user-list'})
+      this.$store.dispatch('userManagement/delete', this.params.data.id)
+          .then(res => { this.showDeleteSuccess() })
+          .catch(err => {
+              this.$vs.notify({
+                  color: 'error',
+                  title: 'Usuário não removido',
+                  text: 'O usuário selecionado não pode ser removido'
+              })
+          })
 
       /* UnComment below lines for enabling true flow if deleting user */
       // this.$store.dispatch("userManagement/removeRecord", this.params.data.id)

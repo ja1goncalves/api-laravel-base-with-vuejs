@@ -25,25 +25,21 @@
         <div class="vx-row">
 
           <!-- Avatar Col -->
-          <div class="vx-col" id="avatar-col">
-            <div class="img-container mb-4">
-              <img :src="user_data.avatar" class="rounded w-full" />
-            </div>
-          </div>
+<!--          <div class="vx-col" id="avatar-col">-->
+<!--            <div class="img-container mb-4">-->
+<!--              <img :src="user_data.avatar" class="rounded w-full" />-->
+<!--            </div>-->
+<!--          </div>-->
 
           <!-- Information - Col 1 -->
           <div class="vx-col flex-1" id="account-info-col-1">
             <table>
               <tr>
-                <td class="font-semibold">Username</td>
-                <td>{{ user_data.username }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Name</td>
+                <td class="font-semibold">Nome</td>
                 <td>{{ user_data.name }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Email</td>
+                <td class="font-semibold">E-mail</td>
                 <td>{{ user_data.email }}</td>
               </tr>
             </table>
@@ -59,11 +55,11 @@
               </tr>
               <tr>
                 <td class="font-semibold">Role</td>
-                <td>{{ user_data.role }}</td>
+                <td>{{ user_data.role ? user_data.role : 'ADMIN' }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Company</td>
-                <td>{{ user_data.company }}</td>
+                <td class="font-semibold">Empresa</td>
+                <td>{{ user_data.company ? user_data.company : 'VMZ' }}</td>
               </tr>
             </table>
           </div>
@@ -82,63 +78,55 @@
           <vx-card title="Information" class="mb-base">
             <table>
               <tr>
-                <td class="font-semibold">Birth Date</td>
-                <td>{{ user_data.dob }}</td>
+                <td class="font-semibold">Data de nascimento</td>
+                <td>{{ user_data.dob ? user_data.dob : '04/06/08' }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Mobile</td>
-                <td>{{ user_data.mobile }}</td>
+                <td class="font-semibold">Celular</td>
+                <td>{{ user_data.mobile ? user_data.mobile : '(81) 9.9898-8989' }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Website</td>
-                <td>{{ user_data.website }}</td>
+                <td>{{ user_data.website ? user_data.website : 'www.vamoz.com.br' }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Languages</td>
-                <td>{{ user_data.languages_known.join(", ") }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Gender</td>
-                <td>{{ user_data.gender }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Contact</td>
-                <td>{{ user_data.contact_options.join(", ") }}</td>
+                <td class="font-semibold">Sexo</td>
+                <td>{{ user_data.gender ? user_data.gender : 'CIS' }}</td>
               </tr>
             </table>
           </vx-card>
         </div>
 
-        <div class="vx-col lg:w-1/2 w-full">
-          <vx-card title="Social Links" class="mb-base">
-            <table>
-              <tr>
-                <td class="font-semibold">Twitter</td>
-                <td>{{ user_data.social_links.twitter }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Facebook</td>
-                <td>{{ user_data.social_links.facebook }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Instagram</td>
-                <td>{{ user_data.social_links.instagram }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Github</td>
-                <td>{{ user_data.social_links.github }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">CodePen</td>
-                <td>{{ user_data.social_links.codepen }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Slack</td>
-                <td>{{ user_data.social_links.slack }}</td>
-              </tr>
-            </table>
-          </vx-card>
-        </div>
+<!--        <div class="vx-col lg:w-1/2 w-full">-->
+<!--          <vx-card title="Social Links" class="mb-base">-->
+<!--            <table>-->
+<!--              <tr>-->
+<!--                <td class="font-semibold">Twitter</td>-->
+<!--                <td>{{ user_data.social_links.twitter }}</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="font-semibold">Facebook</td>-->
+<!--                <td>{{ user_data.social_links.facebook }}</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="font-semibold">Instagram</td>-->
+<!--                <td>{{ user_data.social_links.instagram }}</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="font-semibold">Github</td>-->
+<!--                <td>{{ user_data.social_links.github }}</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="font-semibold">CodePen</td>-->
+<!--                <td>{{ user_data.social_links.codepen }}</td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="font-semibold">Slack</td>-->
+<!--                <td>{{ user_data.social_links.slack }}</td>-->
+<!--              </tr>-->
+<!--            </table>-->
+<!--          </vx-card>-->
+<!--        </div>-->
       </div>
 
       <!-- Permissions -->
@@ -148,7 +136,7 @@
           <div class="vx-col w-full">
             <div class="flex items-end px-3">
               <feather-icon svgClasses="w-6 h-6" icon="LockIcon" class="mr-2" />
-              <span class="font-medium text-lg leading-none">Permissions</span>
+              <span class="font-medium text-lg leading-none">Permissões</span>
             </div>
             <vs-divider />
           </div>
@@ -162,7 +150,7 @@
                 our data structure. You just have to loop over above variable to get table headers.
                 Below we made it simple. So, everyone can understand.
                -->
-              <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Module', 'Read', 'Write', 'Create', 'Delete']" :key="heading">{{ heading }}</th>
+              <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Módulo', 'Ler', 'Escrever', 'Criar', 'Remover']" :key="heading">{{ heading }}</th>
             </tr>
 
             <tr v-for="(val, name) in user_data.permissions" :key="name">
@@ -204,7 +192,7 @@ export default {
         type: 'confirm',
         color: 'danger',
         title: 'Confirm Delete',
-        text: `You are about to delete "${this.user_data.username}"`,
+        text: `You are about to delete "${this.user_data.name}"`,
         accept: this.deleteRecord,
         acceptText: 'Delete'
       })
@@ -212,7 +200,16 @@ export default {
     deleteRecord () {
       /* Below two lines are just for demo purpose */
       this.$router.push({name:'app-user-list'})
-      this.showDeleteSuccess()
+      const userId = this.$route.params.userId
+      this.$store.dispatch('userManagement/delete', userId)
+          .then(res => { this.showDeleteSuccess() })
+          .catch(err => {
+              this.$vs.notify({
+                  color: 'error',
+                  title: 'Usuário não removido',
+                  text: 'O usuário selecionado não pode ser removido'
+              })
+          })
 
       /* UnComment below lines for enabling true flow if deleting user */
       // this.$store.dispatch("userManagement/removeRecord", this.user_data.id)
@@ -236,13 +233,13 @@ export default {
 
     const userId = this.$route.params.userId
     this.$store.dispatch('userManagement/fetchUser', userId)
-      .then(res => { this.user_data = res.data })
+      .then(res => { this.user_data = res.data.data })
       .catch(err => {
         if (err.response.status === 404) {
           this.user_not_found = true
           return
         }
-        console.error(err) 
+        console.error(err)
       })
   }
 }
