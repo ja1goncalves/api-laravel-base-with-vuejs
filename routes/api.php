@@ -27,3 +27,10 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth:api']], function () {
     Route::get('/{id}', 'UsersController@show')->name('show');
     Route::delete('/{id}', 'UsersController@delete')->name('delete');
 });
+
+Route::group(['prefix' => 'categories', 'middleware' => ['auth:api']], function () {
+    Route::resource('/', 'CategoriesController', ['only' => ['store', 'index']]);
+    Route::put('/{id}', 'CategoriesController@update')->name('update');
+    Route::get('/{id}', 'CategoriesController@show')->name('show');
+    Route::delete('/{id}', 'CategoriesController@delete')->name('delete');
+});

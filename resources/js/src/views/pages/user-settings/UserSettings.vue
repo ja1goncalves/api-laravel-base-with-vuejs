@@ -12,6 +12,7 @@
         <user-settings-change-password />
       </div>
     </vs-tab>
+
     <vs-tab icon-pack="feather" icon="icon-info" :label="!isSmallerScreen ? 'Info' : ''">
       <div class="tab-info md:ml-4 md:mt-0 mt-4 ml-0">
         <user-settings-info />
