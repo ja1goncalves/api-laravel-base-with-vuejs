@@ -70,29 +70,6 @@ const router = new Router({
         // Application Routes
         // =============================================================================
         {
-          path: '/apps/todo',
-          redirect: '/apps/todo/all',
-          name: 'todo'
-        },
-        {
-          path: '/apps/todo/:filter',
-          component: () => import('./views/apps/todo/Todo.vue'),
-          meta: {
-            rule: 'editor',
-            parent: 'todo',
-            no_scroll: true
-          }
-        },
-        {
-          path: '/apps/chat',
-          name: 'chat',
-          component: () => import('./views/apps/chat/Chat.vue'),
-          meta: {
-            rule: 'editor',
-            no_scroll: true
-          }
-        },
-        {
           path: '/apps/email',
           redirect: '/apps/email/inbox',
           name: 'email'
@@ -115,77 +92,7 @@ const router = new Router({
             no_scroll: true
           }
         },
-        {
-          path: '/apps/eCommerce/shop',
-          name: 'ecommerce-shop',
-          component: () => import('./views/apps/eCommerce/ECommerceShop.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'eCommerce'},
-              { title: 'Shop', active: true }
-            ],
-            pageTitle: 'Shop',
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/apps/eCommerce/wish-list',
-          name: 'ecommerce-wish-list',
-          component: () => import('./views/apps/eCommerce/ECommerceWishList.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'eCommerce', url:'/apps/eCommerce/shop'},
-              { title: 'Wish List', active: true }
-            ],
-            pageTitle: 'Wish List',
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/apps/eCommerce/checkout',
-          name: 'ecommerce-checkout',
-          component: () => import('./views/apps/eCommerce/ECommerceCheckout.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'eCommerce', url:'/apps/eCommerce/shop'},
-              { title: 'Checkout', active: true }
-            ],
-            pageTitle: 'Checkout',
-            rule: 'editor'
-          }
-        },
-        /*
-                  Below route is for demo purpose
-                  You can use this route in your app
-                    {
-                        path: '/apps/eCommerce/item/',
-                        name: 'ecommerce-item-detail-view',
-                        redirect: '/apps/eCommerce/shop',
-                    }
-                */
-        {
-          path: '/apps/eCommerce/item/',
-          redirect: '/apps/eCommerce/item/5546604'
-        },
-        {
-          path: '/apps/eCommerce/item/:item_id',
-          name: 'ecommerce-item-detail-view',
-          component: () => import('./views/apps/eCommerce/ECommerceItemDetailView.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'eCommerce'},
-              { title: 'Shop', url: {name: 'ecommerce-shop'} },
-              { title: 'Item Details', active: true }
-            ],
-            parent: 'ecommerce-item-detail-view',
-            pageTitle: 'Item Details',
-            rule: 'editor'
-          }
-        },
+        // USERS
         {
           path: '/apps/user/user-list',
           name: 'app-user-list',
@@ -241,6 +148,21 @@ const router = new Router({
             pageTitle: 'Edição de Usuário',
             rule: 'editor'
           }
+        },
+        // CATEGORIES
+        {
+            path: '/apps/categories/categories-list',
+            name: 'app-categories-list',
+            component: () => import('@/views/apps/categories/categories-list/CategoriesList.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Categories' },
+                    { title: 'List', active: true }
+                ],
+                pageTitle: 'Listagem de Categorias',
+                rule: 'editor'
+            }
         },
         // =============================================================================
         // UI ELEMENTS

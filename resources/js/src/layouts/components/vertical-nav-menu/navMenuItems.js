@@ -62,6 +62,14 @@ export default [
             i18n: 'Usuários',
             isDisabled: false
         },
+        {
+            url: '/apps/categories/categories-list',
+            name: 'Categories',
+            slug: 'app-categories-list',
+            icon: 'TagIcon',
+            i18n: 'Categorias',
+            isDisabled: false
+        },
      ],
   },
   {
