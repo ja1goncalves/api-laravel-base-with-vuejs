@@ -20,6 +20,7 @@ class UsersService extends AppService
     public function __construct(UserRepository $repository)
     {
         $this->repository = $repository;
+        $this->repository->setPresenter(UserPresenter::class);
     }
 
     /**
@@ -28,17 +29,11 @@ class UsersService extends AppService
      */
     public function all($limit = 20)
     {
-        return $this->repository
-            ->orderBy('created_at')
-            ->setPresenter(UserPresenter::class)
-            ->paginate($limit);
+        return $this->repository->orderBy('created_at')->paginate($limit);
     }
 
     public function find($id, $skipPresenter = false)
     {
-        return $this->repository
-            ->setPresenter(UserPresenter::class)
-            ->skipPresenter($skipPresenter)
-            ->find($id);
+        return $this->repository->skipPresenter($skipPresenter)->find($id);
     }
 }

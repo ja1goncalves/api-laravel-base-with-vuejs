@@ -19,7 +19,7 @@
 
     <div id="user-data" v-if="user_data">
 
-      <vx-card title="Account" class="mb-base">
+      <vx-card title="Usuário" class="mb-base">
 
         <!-- Avatar -->
         <div class="vx-row">
@@ -54,8 +54,8 @@
                 <td>{{ user_data.status }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Role</td>
-                <td>{{ user_data.role ? user_data.role : 'ADMIN' }}</td>
+                <td class="font-semibold">Grupo</td>
+                <td>{{ user_data.role ? this.getName(user_data.role) : 'ADMIN' }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Empresa</td>
@@ -78,7 +78,7 @@
           <vx-card title="Information" class="mb-base">
             <table>
               <tr>
-                <td class="font-semibold">Data de nascimento</td>
+                <td class="font-semibold">Dt. de nascimento</td>
                 <td>{{ user_data.dob ? user_data.dob : '04/06/08' }}</td>
               </tr>
               <tr>
@@ -222,6 +222,12 @@ export default {
         title: 'User Deleted',
         text: 'The selected user was successfully deleted'
       })
+    },
+    getName(value) {
+        if (value === 'admin') return 'Administração'
+        else if (value === 'editor') return 'Editor'
+        else if (value === 'public') return 'Público'
+        else return '--'
     }
   },
   created () {

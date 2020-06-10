@@ -104,7 +104,7 @@ const router = new Router({
               { title: 'List', active: true }
             ],
             pageTitle: 'Listagem de Usuários',
-            rule: 'editor'
+            rule: 'public'
           }
         },
         {
@@ -118,7 +118,7 @@ const router = new Router({
                     { title: 'Register', active: true }
                 ],
                 pageTitle: 'Registro de Usuário',
-                rule: 'editor'
+                rule: 'admin'
             }
         },
         {
@@ -132,7 +132,7 @@ const router = new Router({
               { title: 'View', active: true }
             ],
             pageTitle: 'Visão do Usuário',
-            rule: 'editor'
+            rule: 'admin'
           }
         },
         {
@@ -146,7 +146,7 @@ const router = new Router({
               { title: 'Edit', active: true }
             ],
             pageTitle: 'Edição de Usuário',
-            rule: 'editor'
+            rule: 'admin'
           }
         },
         // CATEGORIES
@@ -161,7 +161,7 @@ const router = new Router({
                     { title: 'List', active: true }
                 ],
                 pageTitle: 'Listagem de Categorias',
-                rule: 'editor'
+                rule: 'public'
             }
         },
         // =============================================================================

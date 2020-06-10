@@ -22,7 +22,7 @@ const userDefaults = {
   active      : 1,
   about       : 'Software House',
   photoURL    : require('@assets/images/portrait/small/avatar-s-11.jpg'), // From Auth
-  status      : 'offline',
+  status      : 'online',
   userRole    : 'editor'
 }
 

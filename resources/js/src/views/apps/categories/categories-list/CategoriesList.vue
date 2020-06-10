@@ -136,7 +136,7 @@ export default {
         {
           headerName: 'ID',
           field: 'id',
-          width: 125,
+          width: 115,
           filter: true,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
@@ -146,7 +146,7 @@ export default {
           headerName: 'Nome',
           field: 'name',
           filter: true,
-          width: 225
+          width: 250
         },
         {
           headerName: 'Criador por',
@@ -171,7 +171,7 @@ export default {
         {
           headerName: 'Ações',
           field: 'transactions',
-          width: 150,
+          width: 120,
           cellRendererFramework: 'CellRendererActions'
         }
       ],

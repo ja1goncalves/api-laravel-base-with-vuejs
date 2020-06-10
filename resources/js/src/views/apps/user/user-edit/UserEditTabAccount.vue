@@ -48,11 +48,11 @@
           <span class="text-danger text-sm"  v-show="errors.has('status')">{{ errors.first('status') }}</span>
         </div>
 
-<!--        <div class="mt-4">-->
-<!--          <label class="vs-input&#45;&#45;label">Role</label>-->
-<!--          <v-select v-model="role_local" :clearable="false" :options="roleOptions" v-validate="'required'" name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />-->
-<!--          <span class="text-danger text-sm"  v-show="errors.has('role')">{{ errors.first('role') }}</span>-->
-<!--        </div>-->
+        <div class="mt-4">
+          <label class="vs-input--label">Grupo de permissão</label>
+          <v-select v-model="data_local.role" :clearable="false" :options="roleOptions" v-validate="'required'" name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+          <span class="text-danger text-sm"  v-show="errors.has('role')">{{ errors.first('role') }}</span>
+        </div>
 
 <!--        <vs-input class="w-full mt-4" label="Company" v-model="data_local.company" v-validate="'alpha_spaces'" name="company" />-->
 <!--        <span class="text-danger text-sm"  v-show="errors.has('company')">{{ errors.first('company') }}</span>-->
@@ -133,9 +133,9 @@ export default {
         { label: 'Suspenso',  value: 3 }
       ],
       roleOptions: [
-        { label: 'Admin',  value: 'admin' },
-        { label: 'User',  value: 'user' },
-        { label: 'Staff',  value: 'staff' }
+        { label: 'Administrador',  value: 'admin' },
+        { label: 'Editor',  value: 'editor' },
+        { label: 'Público',  value: 'public' }
       ]
     }
   },
@@ -174,8 +174,7 @@ export default {
                 name: this.data_local.name,
                 email: this.data_local.email,
                 status: this.data_local.status.value,
-                // password: this.data_local.password,
-                // password_confirmation: this.data_local.password_confirmation,
+                role: this.data_local.role.value,
             },
             notify: this.$vs.notify
         }
@@ -187,10 +186,9 @@ export default {
         }
         this.$store.dispatch('userManagement/update', payload)
             .then(response => {
-                this.data = response.data
                 this.$vs.notify({
                     title: 'Usuário atualizado',
-                    text: `Usuário ${response.data.name} foi atualizado com sucesso`,
+                    text: `Usuário ${response.data.data.name} foi atualizado com sucesso`,
                     iconPack: 'feather',
                     icon: 'icon-success-circle',
                     color: 'success'

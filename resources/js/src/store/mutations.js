@@ -103,7 +103,11 @@ const mutations = {
 
       if (payload[property] !== null) {
         // If some of user property is null - user default property defined in state.AppActiveUser
-        state.AppActiveUser[property] = payload[property]
+        if (property === 'role') {
+          state.AppActiveUser.userRole = payload[property]
+        } else {
+          state.AppActiveUser[property] = payload[property]
+        }
 
         // Update key in localStorage
         userInfo[property] = payload[property]

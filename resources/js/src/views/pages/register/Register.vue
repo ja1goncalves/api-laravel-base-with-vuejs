@@ -20,8 +20,7 @@
                         <div class="vx-col sm:w-full md:w-full lg:w-2/3 mx-auto self-center  d-theme-dark-bg">
                             <div class="px-8 pt-8 register-tabs-container">
                                 <div class="vx-card__title mb-4">
-                                    <h4 class="mb-4">Create Account</h4>
-                                    <p>Fill the below form to create a new account.</p>
+                                    <h4 class="mb-4">Criar nova conta</h4>
                                 </div>
 <!--                                <vs-tabs>-->
 <!--                                  <vs-tab label="JWT">-->
@@ -61,7 +60,7 @@ export default {
 
 <style lang="scss">
 .register-tabs-container {
-  min-height: 517px;
+  min-height: 550px;
 
   .con-tab {
     padding-bottom: 23px;

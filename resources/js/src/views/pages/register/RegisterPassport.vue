@@ -55,6 +55,17 @@ Author URL: http://www.themeforest.net/user/pixinvent
       class="w-full mt-6" />
     <span class="text-danger text-sm">{{ errors.first('password_confirmation') }}</span>
 
+    <div class="mt-4">
+        <label class="vs-input--label">Grupo de permissão</label>
+        <v-select
+            v-model="role"
+            :clearable="false"
+            :options="roleOptions"
+            v-validate="'required'"
+            name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+        <span class="text-danger text-sm"  v-show="errors.has('role')">{{ errors.first('role') }}</span>
+    </div>
+
     <vs-checkbox v-model="status" class="mt-6">Ativo</vs-checkbox>
     <vs-button class="float-right" @click="registerUser" :disabled="!validateForm">Adicionar</vs-button>
   </div>
@@ -62,20 +73,30 @@ Author URL: http://www.themeforest.net/user/pixinvent
 
 <script>
 import moduleUserManagement from "../../../store/user-management/moduleUserManagement";
+import vSelect from 'vue-select'
 
 export default {
+  components: {
+      vSelect
+  },
   data () {
     return {
       name: '',
       email: '',
       password: '',
       password_confirmation: '',
-      status: true
+      status: true,
+      role: 'Público',
+      roleOptions: [
+          { label: 'Administrador',  value: 'admin' },
+          { label: 'Editor',  value: 'editor' },
+          { label: 'Público',  value: 'public' }
+      ]
     }
   },
   computed: {
     validateForm () {
-      return !this.errors.any() && this.name !== '' && this.email !== '' && this.password !== '' && this.password_confirmation !== ''
+      return !this.errors.any() && this.name !== '' && this.email !== '' && this.password !== '' && this.password_confirmation !== '' && this.role !== ''
     }
   },
   methods: {
@@ -108,7 +129,8 @@ export default {
           email: this.email,
           password: this.password,
           password_confirmation: this.password_confirmation,
-          status: this.status
+          status: this.status,
+          role: this.role.value
         },
         notify: this.$vs.notify
       }
@@ -120,7 +142,7 @@ export default {
         .then(response => {
             this.$vs.notify({
                 title: 'Usuário adicionado',
-                text: `Usuário ${response.data.name} foi adicionado com sucesso`,
+                text: `Usuário ${response.data.data.name} foi adicionado com sucesso`,
                 iconPack: 'feather',
                 icon: 'icon-success-circle',
                 color: 'success'

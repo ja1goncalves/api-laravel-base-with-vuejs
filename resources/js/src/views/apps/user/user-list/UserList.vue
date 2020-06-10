@@ -14,7 +14,7 @@
     <vx-card ref="filterCard" title="Filtros" class="user-list-filters mb-8" actionButtons @refresh="resetColFilters" @remove="resetColFilters">
       <div class="vx-row">
         <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Role</label>
+          <label class="text-sm opacity-75">Grupo</label>
           <v-select :options="roleOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="roleFilter" class="mb-4 md:mb-0" />
         </div>
         <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
@@ -22,12 +22,12 @@
           <v-select :options="statusOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="statusFilter" class="mb-4 md:mb-0" />
         </div>
         <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Verified</label>
-          <v-select :options="isVerifiedOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="isVerifiedFilter" class="mb-4 sm:mb-0" />
+          <label class="text-sm opacity-75">Verificado</label>
+          <v-select disabled :options="isVerifiedOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="isVerifiedFilter" class="mb-4 sm:mb-0" />
         </div>
         <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Department</label>
-          <v-select :options="departmentOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="departmentFilter" />
+          <label class="text-sm opacity-75">Deparamento</label>
+          <v-select disabled :options="departmentOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="departmentFilter" />
         </div>
       </div>
     </vx-card>
@@ -158,6 +158,7 @@ import moduleUserManagement from '@/store/user-management/moduleUserManagement.j
 // Cell Renderer
 import CellRendererLink from './cell-renderer/CellRendererLink.vue'
 import CellRendererStatus from './cell-renderer/CellRendererStatus.vue'
+import CellRendererRole from './cell-renderer/CellRendererRole.vue'
 import CellRendererVerified from './cell-renderer/CellRendererVerified.vue'
 import CellRendererActions from './cell-renderer/CellRendererActions.vue'
 
@@ -170,6 +171,7 @@ export default {
     // Cell Renderer
     CellRendererLink,
     CellRendererStatus,
+    CellRendererRole,
     CellRendererVerified,
     CellRendererActions
   },
@@ -177,32 +179,32 @@ export default {
     return {
 
       // Filter Options
-      roleFilter: { label: 'All', value: 'all' },
+      roleFilter: { label: 'Todos', value: 'all' },
       roleOptions: [
-        { label: 'All', value: 'all' },
-        { label: 'Admin', value: 'admin' },
-        { label: 'User', value: 'user' },
-        { label: 'Staff', value: 'staff' }
+        { label: 'Todos', value: 'all' },
+        { label: 'Administrador', value: 'admin' },
+        { label: 'Editor', value: 'editor' },
+        { label: 'Público', value: 'public' }
       ],
 
-      statusFilter: { label: 'All', value: 'all' },
+      statusFilter: { label: 'Todos', value: 'all' },
       statusOptions: [
-        { label: 'All', value: 'all' },
-        { label: 'Active', value: 'active' },
-        { label: 'Deactivated', value: 'deactivated' },
-        { label: 'Blocked', value: 'blocked' }
+        { label: 'Todos', value: 'all' },
+        { label: 'Ativo', value: 'Ativo' },
+        { label: 'Desativado', value: 'Desativado' },
+        { label: 'Bloqueado', value: 'Bloqueado' }
       ],
 
-      isVerifiedFilter: { label: 'All', value: 'all' },
+      isVerifiedFilter: { label: 'Todos', value: 'all' },
       isVerifiedOptions: [
-        { label: 'All', value: 'all' },
+        { label: 'Todos', value: 'all' },
         { label: 'Yes', value: 'yes' },
         { label: 'No', value: 'no' }
       ],
 
-      departmentFilter: { label: 'All', value: 'all' },
+      departmentFilter: { label: 'Todos', value: 'all' },
       departmentOptions: [
-        { label: 'All', value: 'all' },
+        { label: 'Todos', value: 'all' },
         { label: 'Sales', value: 'sales' },
         { label: 'Development', value: 'development' },
         { label: 'Management', value: 'management' }
@@ -222,7 +224,7 @@ export default {
         {
           headerName: 'ID',
           field: 'id',
-          width: 125,
+          width: 120,
           filter: true,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
@@ -232,31 +234,38 @@ export default {
           headerName: 'E-mail',
           field: 'email',
           filter: true,
-          width: 225
+          width: 215
         },
         {
           headerName: 'Nome',
           field: 'name',
           filter: true,
-          width: 200
+          width: 190
         },
         {
           headerName: 'Status',
           field: 'status',
           filter: true,
-          width: 150,
+          width: 100,
           cellRendererFramework: 'CellRendererStatus'
         },
         {
           headerName: 'Criado',
           field: 'created_at',
           filter: true,
-          width: 150,
+          width: 135,
         },
         {
-          headerName: 'Actions',
+          headerName: 'Grupo',
+          filter: true,
+          field: 'role',
+          width: 100,
+          cellRendererFramework: 'CellRendererRole'
+        },
+        {
+          headerName: 'Ações',
           field: 'transactions',
-          width: 150,
+          width: 125,
           cellRendererFramework: 'CellRendererActions'
         }
       ],
@@ -265,6 +274,7 @@ export default {
       components: {
         CellRendererLink,
         CellRendererStatus,
+        CellRendererRole,
         CellRendererVerified,
         CellRendererActions
       }

@@ -63,6 +63,11 @@ export default {
     return {
       user_data: null,
       user_not_found: false,
+      roleName: {
+          admin: 'Administrador',
+          editor: 'Editor',
+          public: 'Público'
+      },
 
       /*
         This property is created for fetching latest data from API when tab is changed
@@ -80,14 +85,19 @@ export default {
   methods: {
     fetch_user_data (userId) {
       this.$store.dispatch('userManagement/fetchUser', userId)
-        .then(res => { this.user_data = res.data.data })
-        .catch(err => {
+        .then(res => {
+            this.user_data = res.data.data
+            this.user_data.role = this.getNameRole(this.user_data.role)
+        }).catch(err => {
           if (err.response.status === 404) {
             this.user_not_found = true
             return
           }
           console.error(err)
         })
+    },
+    getNameRole (role) {
+        return this.roleName[role]
     }
   },
   created () {

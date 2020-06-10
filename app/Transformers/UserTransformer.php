@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use App\Util\UserRoleEnum;
 use App\Util\UserStatusEnum;
 use League\Fractal\TransformerAbstract;
 use App\Entities\User;
@@ -27,6 +28,7 @@ class UserTransformer extends TransformerAbstract
             'name'       => $model->name,
             'email'      => $model->email,
             'status'     => UserStatusEnum::getName($model->status),
+            'role'       => $model->role ?? 'public',
             /* place your other model properties here */
 
             'created_at' => $model->created_at->format('d/m/Y'),
