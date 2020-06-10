@@ -16,21 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+})->name('auth-user.show');
 Route::middleware('auth:api')->delete('/user/logout', function (Request $request) {
     return $request->user()->token()->revoke();
-});
+})->name('auth-token.delete');
 
 Route::group(['prefix' => 'users', 'middleware' => ['auth:api']], function () {
-    Route::resource('/', 'UsersController', ['only' => ['store', 'index']]);
-    Route::put('/{id}', 'UsersController@update')->name('update');
-    Route::get('/{id}', 'UsersController@show')->name('show');
-    Route::delete('/{id}', 'UsersController@delete')->name('delete');
+    Route::resource('/', 'UsersController', ['only' => ['store', 'index']])->names('users');
+    Route::put('/{id}', 'UsersController@update')->name('users.update');
+    Route::get('/{id}', 'UsersController@show')->name('users.show');
+    Route::delete('/{id}', 'UsersController@delete')->name('users.delete');
 });
 
 Route::group(['prefix' => 'categories', 'middleware' => ['auth:api']], function () {
-    Route::resource('/', 'CategoriesController', ['only' => ['store', 'index']]);
-    Route::put('/{id}', 'CategoriesController@update')->name('update');
-    Route::get('/{id}', 'CategoriesController@show')->name('show');
-    Route::delete('/{id}', 'CategoriesController@delete')->name('delete');
+    Route::resource('/', 'CategoriesController', ['only' => ['store', 'index']])->names('categories');
+    Route::put('/{id}', 'CategoriesController@update')->name('categories.update');
+    Route::get('/{id}', 'CategoriesController@show')->name('categories.show');
+    Route::delete('/{id}', 'CategoriesController@delete')->name('categories.delete');
 });
