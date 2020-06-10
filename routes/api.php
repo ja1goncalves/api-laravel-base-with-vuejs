@@ -34,3 +34,10 @@ Route::group(['prefix' => 'categories', 'middleware' => ['auth:api']], function 
     Route::get('/{id}', 'CategoriesController@show')->name('categories.show');
     Route::delete('/{id}', 'CategoriesController@delete')->name('categories.delete');
 });
+
+Route::group(['prefix' => 'modules', 'middleware' => ['auth:api']], function () {
+    Route::resource('/', 'ModulesController', ['only' => ['store', 'index']])->names('modules');
+    Route::put('/{id}', 'ModulesController@update')->name('modules.update');
+    Route::get('/{id}', 'ModulesController@show')->name('modules.show');
+    Route::delete('/{id}', 'ModulesController@delete')->name('modules.delete');
+});

@@ -22,18 +22,4 @@ class UsersService extends AppService
         $this->repository = $repository;
         $this->repository->setPresenter(UserPresenter::class);
     }
-
-    /**
-     * @param int $limit
-     * @return mixed
-     */
-    public function all($limit = 20)
-    {
-        return $this->repository->orderBy('created_at')->paginate($limit);
-    }
-
-    public function find($id, $skipPresenter = false)
-    {
-        return $this->repository->skipPresenter($skipPresenter)->find($id);
-    }
 }

@@ -13,9 +13,7 @@ use Carbon\Carbon;
  * @method create(array $all)
  * @method find(int $id)
  * @method update(array $all, $id)
- * @method restore($id)
  * @method delete($id)
- * @method forceDelete(int $id)
  * @method findWhere(array $data)
  */
 class AppService

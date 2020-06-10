@@ -90,17 +90,6 @@ trait CrudMethods
     }
 
     /**
-     * Restore the specified resource from storage.
-     *
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function restore($id)
-    {
-        return response()->json($this->service->restore($id));
-    }
-
-    /**
      * Softdeletes the specified resource from storage.
      *
      * @param $id
@@ -120,7 +109,7 @@ trait CrudMethods
      */
     public function destroy($id)
     {
-        return response()->json($this->service->forceDelete($id));
+        return $this->delete($id);
     }
 
     /**

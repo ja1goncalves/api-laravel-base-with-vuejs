@@ -19,7 +19,8 @@ trait CrudMethods
      */
     public function all($limit = 20)
     {
-        return $this->repository->paginate($limit);
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        return $this->repository->orderBy('created_at', 'desc')->paginate($limit);
     }
 
     /**
@@ -82,7 +83,10 @@ trait CrudMethods
      */
     public function delete($id)
     {
-        $this->repository->delete($id);
-        return ['error' => false];
+        $deleted = $this->repository->delete($id);
+        return [
+            'message' => 'Deleted',
+            'error' => !$deleted
+        ];
     }
 }
