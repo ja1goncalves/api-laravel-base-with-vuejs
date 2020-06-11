@@ -24,7 +24,7 @@ class ModulesCreateRequest extends AppRequest
         return [
             'name'   => 'required|string|max:100|unique:modules,name',
             'icon'   => 'required|string|max:100',
-            'route'   => 'nullable|string|max:100',
+            'route'   => 'required|string|max:100',
             'status' => 'sometimes|boolean'
         ];
     }

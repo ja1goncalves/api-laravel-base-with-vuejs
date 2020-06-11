@@ -128,7 +128,7 @@ export default {
 
       statusOptions: [
         { label: 'Ativo',  value: 1 },
-        { label: 'Invativo',  value: 0 },
+        { label: 'Inativo',  value: 0 },
         { label: 'Bloqueado',  value: 2 },
         { label: 'Suspenso',  value: 3 }
       ],

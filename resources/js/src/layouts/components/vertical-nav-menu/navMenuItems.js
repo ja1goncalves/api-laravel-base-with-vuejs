@@ -54,22 +54,37 @@ export default [
     icon: 'PackageIcon',
     i18n: 'Módulos',
     items: [
-        {
-            url: '/apps/user/user-list',
-            name: 'Users',
-            slug: 'app-user-list',
-            icon: 'UsersIcon',
-            i18n: 'Usuários',
-            isDisabled: false
-        },
-        {
-            url: '/apps/categories/categories-list',
-            name: 'Categories',
-            slug: 'app-categories-list',
-            icon: 'TagIcon',
-            i18n: 'Categorias',
-            isDisabled: false
-        },
+      {
+        url: '/apps/user/user-list',
+        name: 'Users',
+        slug: 'app-user-list',
+        icon: 'UsersIcon',
+        i18n: 'Usuários',
+        isDisabled: false
+      },
+      {
+        url: '/apps/categories/categories-list',
+        name: 'Categories',
+        slug: 'app-categories-list',
+        icon: 'TagIcon',
+        i18n: 'Categorias',
+        isDisabled: false
+      },
+     ],
+  },
+  {
+    header: 'Configurations',
+    icon: 'SettingsIcon',
+    i18n: 'Configurações',
+    items: [
+      {
+        url: '/apps/modules/modules-list',
+        name: 'Modules',
+        slug: 'app-modules-list',
+        icon: 'GridIcon',
+        i18n: 'Módulos',
+        isDisabled: false
+      }
      ],
   },
   {

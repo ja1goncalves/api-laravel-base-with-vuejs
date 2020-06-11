@@ -19,7 +19,7 @@ class CreateModulesTable extends Migration
             $table->increments('id');
             $table->string('name', 100)->unique();
             $table->string('icon', 100);
-            $table->string('route', 100)->nullable();
+            $table->string('route', 100);
             $table->boolean('status')->default(false);
             $table->timestamps();
             $table->softDeletes();

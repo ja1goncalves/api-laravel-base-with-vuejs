@@ -15,7 +15,7 @@ class ModulesUpdateRequest extends AppRequest
         return [
             'name' => 'sometimes|string|max:100',
             'icon' => 'sometimes|string|max:100',
-            'route' => 'nullable|string|max:100',
+            'route' => 'sometimes|string|max:100',
             'status' => 'sometimes|boolean'
         ];
     }

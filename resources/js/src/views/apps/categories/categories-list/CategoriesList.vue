@@ -19,7 +19,7 @@
         <div class="flex-grow">
           <vs-dropdown vs-trigger-click class="cursor-pointer">
             <div class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium">
-              <span class="mr-2">{{ currentPage * paginationPageSize - (paginationPageSize - 1) }} - {{ usersData.length - currentPage * paginationPageSize > 0 ? currentPage * paginationPageSize : usersData.length }} of {{ usersData.length }}</span>
+              <span class="mr-2">{{ currentPage * paginationPageSize - (paginationPageSize - 1) }} - {{ categoriesData.length - currentPage * paginationPageSize > 0 ? currentPage * paginationPageSize : categoriesData.length }} of {{ categoriesData.length }}</span>
               <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
             </div>
             <!-- <vs-button class="btn-drop" type="line" color="primary" icon-pack="feather" icon="icon-chevron-down"></vs-button> -->
@@ -75,7 +75,7 @@
         class="ag-theme-material w-100 my-4 ag-grid-table"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
-        :rowData="usersData"
+        :rowData="categoriesData"
         rowSelection="multiple"
         colResizeDefault="shift"
         :animateRows="true"
@@ -100,9 +100,6 @@
 import { AgGridVue } from 'ag-grid-vue'
 import '@sass/vuexy/extraComponents/agGridStyleOverride.scss'
 import vSelect from 'vue-select'
-
-// Store Module
-import moduleCategories from "../../../../store/categories/moduleCategories";
 
 // Cell Renderer
 import CellRendererUser from './cell-renderer/CellRendererUser.vue'
@@ -183,16 +180,8 @@ export default {
       }
     }
   },
-  watch: {
-    roleFilter (obj) {
-      this.setColumnFilter('role', obj.value)
-    },
-    statusFilter (obj) {
-      this.setColumnFilter('status', obj.value)
-    },
-  },
   computed: {
-    usersData () {
+    categoriesData () {
       return this.$store.state.categories.categories
     },
     paginationPageSize () {
@@ -217,24 +206,6 @@ export default {
     }
   },
   methods: {
-    setColumnFilter (column, val) {
-      const filter = this.gridApi.getFilterInstance(column)
-      let modelObj = null
-
-      if (val !== 'all') {
-        modelObj = { type: 'equals', filter: val }
-      }
-
-      filter.setModel(modelObj)
-      this.gridApi.onFilterChanged()
-    },
-    resetColFilters () {
-      // Reset Grid Filter
-      this.gridApi.setFilterModel(null)
-      this.gridApi.onFilterChanged()
-
-      this.$refs.filterCard.removeRefreshAnimation()
-    },
     updateSearchQuery (val) {
       this.gridApi.setQuickFilter(val)
     },

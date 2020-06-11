@@ -23,8 +23,9 @@ class ModulesTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
+            'icon'       => $model->icon,
             'name'       => $model->name,
-            'route'      => $model->route,
+            'route'      => $model->route ?? '--',
             'status'     => $model->status,
 
             /* place your other model properties here */

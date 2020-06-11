@@ -19,7 +19,7 @@ import actions from './actions'
 Vue.use(Vuex)
 
 import moduleCategories from "./categories/moduleCategories";
-// import moduleCalendar from './calendar/moduleCalendar.js'
+import moduleModulesManagement from "./modules-management/moduleModulesManagement";
 // import moduleChat from './chat/moduleChat.js'
 // import moduleEmail from './email/moduleEmail.js'
 import moduleAuth from './auth/moduleAuth.js'
@@ -33,7 +33,7 @@ export default new Vuex.Store({
   actions,
   modules: {
     categories: moduleCategories,
-    // calendar: moduleCalendar,
+    modulesManagement: moduleModulesManagement,
     // chat: moduleChat,
     // email: moduleEmail,
     auth: moduleAuth,
