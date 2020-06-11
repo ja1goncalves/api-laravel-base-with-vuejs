@@ -179,20 +179,20 @@ const router = new Router({
             rule: 'editor'
           }
         },
-          {
-            path: '/apps/modules/module-edit/:moduleId',
-            name: 'app-module-edit',
-            component: () => import('@/views/apps/modules/ModuleEdit.vue'),
-            meta: {
-              breadcrumb: [
-                { title: 'Home', url: '/' },
-                { title: 'Module' },
-                { title: 'Edit', active: true }
-              ],
-              pageTitle: 'Edição de modulo',
-              rule: 'admin'
-            }
-          },
+        {
+          path: '/apps/modules/module-edit/:moduleId',
+          name: 'app-module-edit',
+          component: () => import('@/views/apps/modules/ModuleEdit.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Module' },
+              { title: 'Edit', active: true }
+            ],
+            pageTitle: 'Edição de modulo',
+            rule: 'admin'
+          }
+        },
         // =============================================================================
         // Pages Routes
         // =============================================================================
