@@ -30,6 +30,6 @@ class Modules extends AppModel implements Transformable
     public static function boot()
     {
         parent::boot();
-        ModulesObserver::observe(ModulesObserver::class);
+        Modules::observe(ModulesObserver::class);
     }
 }

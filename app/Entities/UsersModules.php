@@ -41,6 +41,6 @@ class UsersModules extends Model implements Transformable
     public static function boot()
     {
         parent::boot();
-        UsersModulesObserver::observe(UsersModulesObserver::class);
+        UsersModules::observe(UsersModulesObserver::class);
     }
 }

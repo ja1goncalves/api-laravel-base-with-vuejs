@@ -66,6 +66,6 @@ class User extends Authenticatable implements Transformable
     public static function boot()
     {
         parent::boot();
-        UserObserver::observe(UserObserver::class);
+        User::observe(UserObserver::class);
     }
 }
