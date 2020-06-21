@@ -16,9 +16,13 @@ class CreateUsersModulesActionsTable extends Migration
 	public function up()
 	{
 		Schema::create('users_modules_actions', function(Blueprint $table) {
-            $table->increments('id');
-
+            $table->unsignedInteger('user_module_id');
+            $table->string('action')->default('index');
+            $table->boolean('auth')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_module_id')->references('id')
+                ->on('users_modules')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 

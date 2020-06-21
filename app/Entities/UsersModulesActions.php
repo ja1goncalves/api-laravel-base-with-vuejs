@@ -20,6 +20,11 @@ class UsersModulesActions extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['user_module_id', 'action', 'auth'];
 
+
+    public function userModule()
+    {
+        return $this->belongsTo(UsersModules::class, 'user_module_id', 'id');
+    }
 }

@@ -31,4 +31,9 @@ class UsersModules extends Model implements Transformable
     {
         return $this->belongsTo(Modules::class, 'module_id', 'id');
     }
+
+    public function actions()
+    {
+        return $this->hasMany(UsersModulesActions::class, 'user_module_id', 'id');
+    }
 }
