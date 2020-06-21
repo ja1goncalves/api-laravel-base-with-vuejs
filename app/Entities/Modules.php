@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Observers\ModulesObserver;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -24,5 +25,11 @@ class Modules extends AppModel implements Transformable
     public function usersModules()
     {
         return $this->hasMany(UsersModules::class, 'module_id', 'id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        ModulesObserver::observe(ModulesObserver::class);
     }
 }

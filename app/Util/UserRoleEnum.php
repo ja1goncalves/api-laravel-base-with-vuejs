@@ -4,7 +4,7 @@
 namespace App\Util;
 
 
-class UserRoleEnum
+final class UserRoleEnum
 {
     public const ADMIN = 'admin';
     public const EDITOR = 'editor';

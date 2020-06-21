@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,4 +62,10 @@ class User extends Authenticatable implements Transformable
         return $this->hasMany(UsersModules::class, 'user_id', 'id');
     }
 
+
+    public static function boot()
+    {
+        parent::boot();
+        UserObserver::observe(UserObserver::class);
+    }
 }
