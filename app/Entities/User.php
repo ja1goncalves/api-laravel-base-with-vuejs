@@ -62,6 +62,11 @@ class User extends Authenticatable implements Transformable
         return $this->hasMany(UsersModules::class, 'user_id', 'id');
     }
 
+    public function modules()
+    {
+        return $this->belongsToMany(Modules::class, 'users_modules', 'user_id', 'module_id');
+    }
+
 
     public static function boot()
     {

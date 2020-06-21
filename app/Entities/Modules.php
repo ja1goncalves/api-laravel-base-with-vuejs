@@ -27,6 +27,11 @@ class Modules extends AppModel implements Transformable
         return $this->hasMany(UsersModules::class, 'module_id', 'id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_modules', 'module_id', 'user_id');
+    }
+
     public static function boot()
     {
         parent::boot();

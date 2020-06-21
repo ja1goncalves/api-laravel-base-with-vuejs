@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Presenters\UserPresenter;
 use App\Repositories\UserRepository;
 use App\Services\Traits\CrudMethods;
+use App\Transformers\UserFindTransformer;
 
 class UsersService extends AppService
 {
@@ -21,5 +22,17 @@ class UsersService extends AppService
     {
         $this->repository = $repository;
         $this->repository->setPresenter(UserPresenter::class);
+    }
+
+    /**
+     * @param $id
+     * @param bool $skipPresenter
+     * @return mixed
+     */
+    public function find($id, $skipPresenter = false)
+    {
+        return $this->repository
+            ->with('modules.usersModules.actions')
+            ->find($id);
     }
 }
