@@ -26,6 +26,8 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth:api']], function () {
     Route::put('/{id}', 'UsersController@update')->name('users.update');
     Route::get('/{id}', 'UsersController@show')->name('users.show');
     Route::delete('/{id}', 'UsersController@delete')->name('users.delete');
+    Route::get('/update-user-module/{id}', 'UsersController@updateUserModule')->name('users.update.module');
+    Route::get('/update-user-module-action/{id}', 'UsersController@updateUserModuleAction')->name('users.update.action');
 });
 
 Route::group(['prefix' => 'categories', 'middleware' => ['auth:api']], function () {

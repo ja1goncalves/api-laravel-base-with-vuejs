@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Presenters\UserPresenter;
 use App\Repositories\UserRepository;
+use App\Repositories\UsersModulesActionsRepository;
 use App\Repositories\UsersModulesRepository;
 use App\Services\Traits\CrudMethods;
 
@@ -23,10 +24,15 @@ class UsersService extends AppService
      */
     protected $usersModulesRepository;
 
-    public function __construct(UserRepository $repository, UsersModulesRepository $usersModulesRepository)
+    protected $actionsRepository;
+
+    public function __construct(UserRepository $repository,
+                                UsersModulesRepository $usersModulesRepository,
+                                UsersModulesActionsRepository $actionsRepository)
     {
         $this->repository = $repository;
         $this->usersModulesRepository = $usersModulesRepository;
+        $this->actionsRepository = $actionsRepository;
         $this->repository->setPresenter(UserPresenter::class);
     }
 
@@ -50,5 +56,24 @@ class UsersService extends AppService
             $user['data']['modules'][$key]['user_module'] = $user_module;
         }
         return $user;
+    }
+
+    public function updateUserModule($id)
+    {
+        $userModule = $this->usersModulesRepository->find($id);
+        $userModule->auth = !$userModule->auth;
+        $userModule->save();
+
+        return $this->find($userModule->user_id);
+    }
+
+
+    public function updateUserModuleAction($actionId)
+    {
+        $action = $this->actionsRepository->find($actionId);
+        $action->auth = !$action->auth;
+        $action->save();
+
+        return ['data' => $action->auth];
     }
 }

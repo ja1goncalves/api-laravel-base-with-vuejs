@@ -72,4 +72,14 @@ class UsersController extends Controller
     {
         return $this->generalUpdate($request, $id);
     }
+
+    public function updateUserModule(Request $request, $id)
+    {
+        return $this->service->updateUserModule($id);
+    }
+
+    public function updateUserModuleAction(Request $request, $id)
+    {
+        return $this->service->updateUserModuleAction($id);
+    }
 }

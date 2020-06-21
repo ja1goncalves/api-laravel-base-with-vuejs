@@ -145,10 +145,13 @@
         <div class="block overflow-x-auto">
           <table class="w-full permissions-table">
             <tr>
-              <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Módulo', 'Inicio', 'Ler', 'Adicionar', 'Atualizar', 'Remover']" :key="heading">{{ heading }}</th>
+              <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['', 'Módulo', 'Inicio', 'Ler', 'Adicionar', 'Atualizar', 'Remover']" :key="heading">{{ heading }}</th>
             </tr>
 
             <tr v-for="{ name, user_module } in user_data.modules" :key="name" disabled="true">
+              <td class="px-3 py-2">
+                  <vs-checkbox v-model="user_module.auth" class="pointer-events-none" />
+              </td>
               <td class="px-3 py-2">{{ name }}</td>
               <td v-for="{ auth, name } in user_module.actions" class="px-3 py-2" :key="name+auth">
                 <vs-checkbox v-model="auth" class="pointer-events-none" />

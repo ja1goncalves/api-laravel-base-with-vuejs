@@ -18,7 +18,7 @@
           <!-- <vs-avatar :src="data.avatar" size="80px" class="mr-4" /> -->
           <div>
             <p class="text-lg font-medium mb-2 mt-4 sm:mt-0">{{ data.name  }}</p>
-            <input type="file" class="hidden" ref="update_avatar_input" @change="update_avatar" accept="image/*">
+            <input type="file" class="hidden" ref="update_avatar_input" accept="image/*">
 
             <!-- Toggle comment of below buttons as one for actual flow & currently shown is only for demo -->
             <vs-button class="mr-4 mb-4" disabled="">Mudar Avatar</vs-button>
@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <div class="block overflow-x-auto">
+      <div class="block overflow-x-auto" v-if="this.user_logged.userRole === 'admin'">
         <table class="w-full">
           <tr>
             <!--
@@ -81,13 +81,16 @@
               our data structure. You just have to loop over above variable to get table headers.
               Below we made it simple. So, everyone can understand.
              -->
-            <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Módulo', 'Inicio', 'Ler', 'Adicionar', 'Atualizar', 'Remover']" :key="heading">{{ heading }}</th>
+            <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['', 'Módulo', 'Inicio', 'Ler', 'Adicionar', 'Atualizar', 'Remover']" :key="heading">{{ heading }}</th>
           </tr>
 
-          <tr v-for="{ name, user_module } in data_local.modules" :key="name">
-            <td class="px-3 py-2">{{ name }}</td>
-            <td v-for="{ auth, name } in user_module.actions" class="px-3 py-2" :key="name+auth">
-              <vs-checkbox v-model="auth" />
+          <tr v-for="{ name, user_module, id } in data_local.modules" :key="name">
+            <td class="px-3 py-2" :key="'check-module-'+id">
+                <vs-checkbox v-model="user_module.auth" @change="update_user_module(user_module.id)" />
+            </td>
+            <td class="px-3 py-2" :key="name+id">{{ name }}</td>
+            <td v-for="{ auth, id } in user_module.actions" class="px-3 py-2">
+              <vs-checkbox v-model="auth" @change="update_action(id)" :disabled="!user_module.auth" />
             </td>
           </tr>
         </table>
@@ -125,6 +128,7 @@ export default {
     return {
 
       data_local: JSON.parse(JSON.stringify(this.data)),
+      user_logged: this.$store.state.AppActiveUser,
 
       statusOptions: [
         { label: 'Ativo',  value: 1 },
@@ -206,10 +210,37 @@ export default {
     reset_data () {
       this.data_local = JSON.parse(JSON.stringify(this.data))
     },
-    update_avatar () {
-      // You can update avatar Here
-      // For reference you can check dataList example
-      // We haven't integrated it here, because data isn't saved in DB
+    update_action (actionId) {
+        this.$store.dispatch('userManagement/updateAction', actionId).then(response => {
+            this.$vs.notify({
+                title: 'Usuário atualizado',
+                text: response.data.data ? 'Ação liberada' : 'Ação bloqueada',
+                iconPack: 'feather',
+                icon: 'icon-success-circle',
+                color: 'success',
+            })
+        }).catch(error => {
+            this.$vs.notify({
+                title: 'Usuário não atualizado',
+                text: error.message,
+                iconPack: 'feather',
+                icon: 'icon-alert-circle',
+                color: 'danger',
+            })
+        })
+    },
+    update_user_module (userModuleId) {
+        this.$store.dispatch('userManagement/updateUserModule', userModuleId).then(response => {
+            this.data_local.modules = response.data.data.modules;
+        }).catch(error => {
+            this.$vs.notify({
+                title: 'Usuário não atualizado',
+                text: error.message,
+                iconPack: 'feather',
+                icon: 'icon-alert-circle',
+                color: 'danger',
+            })
+        })
     }
   }
 }
