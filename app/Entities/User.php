@@ -46,4 +46,19 @@ class User extends Authenticatable implements Transformable
         'email_verified_at' => 'datetime',
     ];
 
+    public function categoriesCreated()
+    {
+        return $this->hasMany(Categories::class, 'created_by', 'id');
+    }
+
+    public function categoriesUpdated()
+    {
+        return $this->hasMany(Categories::class, 'updated_by', 'id');
+    }
+
+    public function usersModules()
+    {
+        return $this->hasMany(UsersModules::class, 'user_id', 'id');
+    }
+
 }

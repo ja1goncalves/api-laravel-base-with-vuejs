@@ -2,15 +2,16 @@
 
 namespace App\Entities;
 
+use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Modules.
+ * Class UsersModulesActions.
  *
  * @package namespace App\Entities;
  */
-class Modules extends AppModel implements Transformable
+class UsersModulesActions extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -19,10 +20,6 @@ class Modules extends AppModel implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name', 'icon', 'route', 'status'];
+    protected $fillable = [];
 
-    public function usersModules()
-    {
-        return $this->hasMany(UsersModules::class, 'module_id', 'id');
-    }
 }
