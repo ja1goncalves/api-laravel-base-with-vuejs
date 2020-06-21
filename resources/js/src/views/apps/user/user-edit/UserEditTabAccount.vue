@@ -81,13 +81,13 @@
               our data structure. You just have to loop over above variable to get table headers.
               Below we made it simple. So, everyone can understand.
              -->
-            <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Módulo', 'Ler', 'Escrever', 'Criar', 'Remover']" :key="heading">{{ heading }}</th>
+            <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Módulo', 'Inicio', 'Ler', 'Adicionar', 'Atualizar', 'Remover']" :key="heading">{{ heading }}</th>
           </tr>
 
-          <tr v-for="(val, name) in data_local.permissions" :key="name">
+          <tr v-for="{ name, user_module } in data_local.modules" :key="name">
             <td class="px-3 py-2">{{ name }}</td>
-            <td v-for="(permission, name) in val" class="px-3 py-2" :key="name+permission">
-              <vs-checkbox v-model="val[name]" />
+            <td v-for="{ auth, name } in user_module.actions" class="px-3 py-2" :key="name+auth">
+              <vs-checkbox v-model="auth" />
             </td>
           </tr>
         </table>

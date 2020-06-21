@@ -145,18 +145,13 @@
         <div class="block overflow-x-auto">
           <table class="w-full permissions-table">
             <tr>
-              <!--
-                You can also use `Object.keys(Object.values(data_local.permissions)[0])` this logic if you consider,
-                our data structure. You just have to loop over above variable to get table headers.
-                Below we made it simple. So, everyone can understand.
-               -->
-              <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Módulo', 'Ler', 'Escrever', 'Criar', 'Remover']" :key="heading">{{ heading }}</th>
+              <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Módulo', 'Inicio', 'Ler', 'Adicionar', 'Atualizar', 'Remover']" :key="heading">{{ heading }}</th>
             </tr>
 
-            <tr v-for="(val, name) in user_data.permissions" :key="name">
+            <tr v-for="{ name, user_module } in user_data.modules" :key="name" disabled="true">
               <td class="px-3 py-2">{{ name }}</td>
-              <td v-for="(permission, name) in val" class="px-3 py-2" :key="name+permission">
-                <vs-checkbox v-model="val[name]" class="pointer-events-none" />
+              <td v-for="{ auth, name } in user_module.actions" class="px-3 py-2" :key="name+auth">
+                <vs-checkbox v-model="auth" class="pointer-events-none" />
               </td>
             </tr>
           </table>
