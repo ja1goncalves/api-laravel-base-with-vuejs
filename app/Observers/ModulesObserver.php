@@ -38,6 +38,7 @@ class ModulesObserver
             $user_module = [
                 'user_id' => $user->id,
                 'module_id' => $module->getAttribute('id'),
+                'auth' => $user->id == 1,
             ];
             $this->usersModulesRepository->create($user_module);
         }

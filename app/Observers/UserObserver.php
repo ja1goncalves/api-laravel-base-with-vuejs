@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Entities\User;
 use App\Repositories\ModulesRepository;
 use App\Repositories\UsersModulesRepository;
+use Illuminate\Support\Facades\Hash;
 
 class UserObserver
 {
@@ -30,6 +31,12 @@ class UserObserver
         $this->modulesRepository = $modulesRepository;
     }
 
+    public function creating(User $user)
+    {
+        if (isset($user->password)) {
+            $user->password = Hash::make($user->password);
+        }
+    }
     public function created(User $user)
     {
         $modules = $this->modulesRepository->all('id');
