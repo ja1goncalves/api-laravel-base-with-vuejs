@@ -116,25 +116,25 @@ class Acl
 
         $module = $this->modulesRepository
             ->findByField('route', $this->module)
-            ->first()->toArray();
+            ->first();
 
         if ($module) {
             $user_modules = $this->usersModulesRepository
                 ->with(['actions' => function ($q){
-                    return $q->where('action', '=', $this->action)->first()->toArray();
+                    return $q->where('action', '=', $this->action)->get(['id']);
                 }])
-                ->findWhere(['user_id' => $this->user_logged->id, 'module_id' => $module['id']])
-                ->first()->toArray();
+                ->findWhere(['user_id' => $this->user_logged->id, 'module_id' => $module['id']], ['id', 'auth'])
+                ->first();
 
-            return $this->authUserModule($user_modules);
+            return $this->authUserModuleAction($user_modules->toArray(),);
         } else {
             return false;
         }
     }
 
-    private function authUserModule(array $user_module)
+    private function authUserModuleAction(array $user_module)
     {
         return (!is_null($user_module) && $user_module['auth']) &&
-               (!is_null($user_module['action']) && $user_module['action']['auth']);
+               (!is_null($user_module['actions'][0]) && $user_module['actions'][0]['auth']);
     }
 }
