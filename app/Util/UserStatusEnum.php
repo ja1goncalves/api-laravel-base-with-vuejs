@@ -19,4 +19,13 @@ final class UserStatusEnum
             ? self::NAMES[$status]
             : '';
     }
+
+    /**
+     * @param int $status
+     * @return bool
+     */
+    public static function acceptableStatus(int $status): bool
+    {
+        return in_array($status, [self::ACTIVE]);
+    }
 }

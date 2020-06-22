@@ -21,7 +21,7 @@ final class Functions
             return Carbon::createFromFormat(self::FORMAT_DATE_BR, $date)->format(self::FORMAT_DATE_US);
     }
 
-    public static function getWeekendDays()
+    public static function getWeekendDays(): array
     {
         $inFriday = Carbon::now()->isFriday();
         $inSaturday = $inFriday || Carbon::now()->isSaturday();
@@ -31,6 +31,15 @@ final class Functions
             'friday' => (new Carbon($inFriday ? 'last' : 'first' . ' friday this week'))->format('Y-m-d'),
             'saturday' => (new Carbon($inSaturday ? 'last' : 'first' . ' saturday this week'))->format('Y-m-d'),
             'sunday' => (new Carbon($inSunday ? 'last' : 'first' . ' sunday this week'))->format('Y-m-d'),
+        ];
+    }
+
+    public static function routeDetails(string $route_name): array
+    {
+        $route = explode('.', $route_name);
+        return [
+            'module' => $route[0],
+            'action' => last($route)
         ];
     }
 }
