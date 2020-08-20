@@ -56,42 +56,7 @@ const router = new Router({
             rule: 'editor'
           }
         },
-        {
-          path: '/dashboard/ecommerce',
-          name: 'dashboard-ecommerce',
-          component: () => import('./views/DashboardECommerce.vue'),
-          meta: {
-            rule: 'admin'
-          }
-        },
 
-
-        // =============================================================================
-        // Application Routes
-        // =============================================================================
-        {
-          path: '/apps/email',
-          redirect: '/apps/email/inbox',
-          name: 'email'
-        },
-        {
-          path: '/apps/email/:filter',
-          component: () => import('./views/apps/email/Email.vue'),
-          meta: {
-            rule: 'editor',
-            parent: 'email',
-            no_scroll: true
-          }
-        },
-        {
-          path: '/apps/calendar/vue-simple-calendar',
-          name: 'calendar-simple-calendar',
-          component: () => import('./views/apps/calendar/SimpleCalendar.vue'),
-          meta: {
-            rule: 'editor',
-            no_scroll: true
-          }
-        },
         // USERS
         {
           path: '/apps/user/user-list',
@@ -225,65 +190,6 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/faq',
-          name: 'page-faq',
-          component: () => import('@/views/pages/Faq.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'FAQ', active: true }
-            ],
-            pageTitle: 'FAQ',
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/pages/knowledge-base',
-          name: 'page-knowledge-base',
-          component: () => import('@/views/pages/KnowledgeBase.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'KnowledgeBase', active: true }
-            ],
-            pageTitle: 'KnowledgeBase',
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/pages/knowledge-base/category',
-          name: 'page-knowledge-base-category',
-          component: () => import('@/views/pages/KnowledgeBaseCategory.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'KnowledgeBase', url: '/pages/knowledge-base' },
-              { title: 'Category', active: true }
-            ],
-            parent: 'page-knowledge-base',
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/pages/knowledge-base/category/question',
-          name: 'page-knowledge-base-category-question',
-          component: () => import('@/views/pages/KnowledgeBaseCategoryQuestion.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'KnowledgeBase', url: '/pages/knowledge-base' },
-              { title: 'Category', url: '/pages/knowledge-base/category' },
-              { title: 'Question', active: true }
-            ],
-            parent: 'page-knowledge-base',
-            rule: 'editor'
-          }
-        },
-        {
           path: '/pages/search',
           name: 'page-search',
           component: () => import('@/views/pages/Search.vue'),
@@ -294,20 +200,6 @@ const router = new Router({
               { title: 'Search', active: true }
             ],
             pageTitle: 'Search',
-            rule: 'editor'
-          }
-        },
-        {
-          path: '/pages/invoice',
-          name: 'page-invoice',
-          component: () => import('@/views/pages/Invoice.vue'),
-          meta: {
-            breadcrumb: [
-              { title: 'Home', url: '/' },
-              { title: 'Pages' },
-              { title: 'Invoice', active: true }
-            ],
-            pageTitle: 'Invoice',
             rule: 'editor'
           }
         },
